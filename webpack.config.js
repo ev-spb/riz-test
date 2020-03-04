@@ -71,9 +71,26 @@ const defaultConfig = {
           pretty: true
         }
       },
-      //подключение импорта шрифтов
+      //подключение импорта картинок 
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(jpeg|jpg|png|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        //Исключаем каталог с шрифтами
+        exclude: [
+          path.resolve(__dirname, "src/commons/fonts/")
+        ],
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          publicPath: '/img/',
+          outputPath: 'img/'
+        },
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        //Смотрим только в каталог с шрифтами, в другое место подключиться не смогут
+        include: [
+          path.resolve(__dirname, "src/commons/fonts/")
+        ],
         loader: 'file-loader',
         options: {
           name: '[name].[ext]',
