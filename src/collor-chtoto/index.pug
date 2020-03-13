@@ -1,7 +1,11 @@
+-var settings = require('./settings.json')
+
+
 html
   head
   body
     div Привет Мир!
     .another Привет Мир!
+    .another #{settings.data}
     img(src=require('img/img.svg').default)
     img(src=require('img/img.svg').default)
